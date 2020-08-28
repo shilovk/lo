@@ -1,0 +1,12 @@
+ru:
+  activerecord:
+    models:
+      food: "Блюдо"
+
+    attributes:
+      food:
+        title: "Название"
+
+    errors:
+      messages:
+        blank: "не может быть пустым"

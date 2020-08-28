@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    models:
+      food: "Food"
+
+    attributes:
+      food:
+        title: "Title"
+
+    errors:
+      messages:
+        blank: "not to be blank"
