@@ -34,4 +34,5 @@ yarn-debug.log*
 
 .DS_Store
 .env
+log/
 tmp/
