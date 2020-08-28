@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title Qna
+    meta charset='utf-8'
+    meta content='width=device-width, initial-scale=1, shrink-to-fit=no' name='viewport'
+    = action_cable_meta_tag
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+
+  body
+    = render 'shared/nav'
+
+    p.notice= notice
+    p.alert= alert
+
+    = yield
