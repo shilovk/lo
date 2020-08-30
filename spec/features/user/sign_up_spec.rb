@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Gest can sign up', '
+feature 'Guest can sign up', '
   In order to get menu
   As an unregistered user
   I\'d like to be able to sign up
@@ -9,7 +9,7 @@ feature 'Gest can sign up', '
 
   describe 'Unregistered user' do
     scenario 'sign up successfully' do
-      new_user = User.new(email: 'newuser@test.com', password: '12345678', password_confirmation: '12345678')
+      new_user = User.new(email: 'newuser@test.com', password: '123456', password_confirmation: '123456')
       sign_up(new_user)
 
       expect(page).to have_content 'Welcome! You have signed up successfully.'

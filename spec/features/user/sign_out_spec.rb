@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 feature 'User can sign out', '
@@ -8,7 +6,6 @@ feature 'User can sign out', '
   I\'d like to be able to sign out
 ' do
   given(:user) { create(:user) }
-  background { visit new_user_session_path }
 
   scenario 'Registered user сan to sign out' do
     sign_in(user)

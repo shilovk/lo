@@ -5,7 +5,6 @@ feature 'First sign up is admin user', '
   I became a Lunches Admin
 ' do
   given(:users) { create_list(:user, 2) }
-  background { visit new_user_session_path }
 
   scenario 'First registered user in the system is Admin' do
     sign_in(users.first)

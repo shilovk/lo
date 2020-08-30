@@ -1,9 +1,15 @@
 ru:
   activerecord:
     models:
+      user: "Пользлователь"
       food: "Блюдо"
 
     attributes:
+      user:
+        name: "Имя"
+        email: "Email"
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
       food:
         title: "Название"
 
