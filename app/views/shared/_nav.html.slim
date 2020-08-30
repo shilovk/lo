@@ -1,0 +1,17 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-light.p-0.m-0
+  .navbar-brand= link_to_unless current_page?(root_url), 'Lunch Ordering', root_path, class: 'navbar-brand'
+  button.navbar-toggler aria-controls='navbarToggler1' aria-expanded='false' aria-label=('Toggle navigation') data-target='#navbarToggler1' data-toggle='collapse' type='button'
+    span.navbar-toggler-icon
+  #navbarToggler1.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto.mt-2.mt-lg-0
+      - if user_signed_in?
+        li.nav-item.d-inline
+          = "Welcome, <b>#{current_user.email}</b>".html_safe
+          = t('.admin') if current_user.admin?
+          li= link_to t('.edit'), edit_user_registration_path, class: 'nav-item nav-link d-inline'
+        li= link_to t(".sign_out"), destroy_user_session_path, method: :delete, class: 'nav-item nav-link d-inline'
+      - else
+        - if controller_name != 'registrations'
+          li= link_to t('.sign_up'), new_user_registration_path, class: 'nav-item nav-link d-inline'
+        - if controller_name != 'sessions'
+          li= link_to t('.sign_in'), new_user_session_path, class: 'nav-item nav-link d-inline'

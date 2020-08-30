@@ -120,3 +120,6 @@ Lint/StructNewOverride:
 
 Style/CommentedKeyword:
   Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
