@@ -1,9 +1,13 @@
-footer
-  p
-    = current_year
-    | . Author:
-    = link_to 'Konstantin Shilov', github_url('shilovk', '')
-  p
-    |  Project:
-    = link_to 'LunchOrdering', github_url('shilovk', 'lo')
-    | . About project: Lunch ordering with foods, menus.
+footer.bg-light.mt-4
+  .row.text-center
+    .col.mb-3.mt-3
+      h6
+        | Project:
+        b= link_to ' Lunch Ordering', github_url('shilovk', 'lo')
+    .w-100
+    .col= current_year
+    .col
+      | Author:
+      = link_to ' Konstantin Shilov', github_url('shilovk', '')
+    .w-100
+    small.col.mt-3 About project: Lunch ordering with foods, menus.
