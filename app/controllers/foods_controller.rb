@@ -4,6 +4,8 @@ class FoodsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
 
   def index
+    @weak_days = Food.weak_days
+    @weak_dates = Food.weak_dates
     @foods = Food.all
   end
 
