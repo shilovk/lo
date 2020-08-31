@@ -1,8 +1,8 @@
 nav.navbar.navbar-expand-lg.navbar-light.bg-light.p-0.m-0
   .navbar-brand= link_to_unless current_page?(root_url), 'Lunch Ordering', root_path, class: 'navbar-brand'
-  button.navbar-toggler aria-controls='navbarMenu' aria-expanded='false' aria-label=('Menu navigation') data-target='#navbarMenu' data-toggle='collapse' type='button'
+  button.navbar-toggler aria-controls='navbarToggler1' aria-expanded='false' aria-label=('Toggle navigation') data-target='#navbarToggler1' data-toggle='collapse' type='button'
     span.navbar-toggler-icon
-  #navbarMenu.collapse.navbar-collapse
+  #navbarToggler1.collapse.navbar-collapse
     ul.navbar-nav.mr-auto.mt-2.mt-lg-0
       - if user_signed_in?
         li.nav-item.d-inline

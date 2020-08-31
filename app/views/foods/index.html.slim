@@ -1,4 +1,13 @@
-h3 Foods
-
-ul
-  = render @foods
+- if user_signed_in?
+  h3.text-center= t(Food.model_name.human)
+  nav.navbar.navbar-expand-lg.navbar-light.bg-light.p-0.m-0
+    button.navbar-toggler aria-controls='navbarFood' aria-expanded='false' aria-label=('Toggle navigation') data-target='#navbarFood' data-toggle='collapse' type='button'
+      span.navbar-toggler-icon
+    #navbarFood.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto.m-2.mt-lg-0
+        - @weak_days.each_with_index do |day, i|
+          li class="nav-item dropdown #{day}"
+            = link_to day, '#', id: 'navbarDropdown', class: 'nav-link dropdown-toggle', 'aria-expanded' => 'false', 'aria-haspopup' => 'true',  'data-toggle' => 'dropdown', 'role' => 'button'
+            .dropdown-menu aria-labelledby='navbarDropdown'
+              - Food.on_date(@weak_dates[i]).each do |food|
+                = link_to "#{food.title} - #{food.price}", '#', remote: true, class: 'dropdown-item'
