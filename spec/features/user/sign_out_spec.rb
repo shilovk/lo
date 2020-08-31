@@ -11,6 +11,6 @@ feature 'User can sign out', '
     sign_in(user)
     click_on 'Sign out'
 
-    expect(page).to have_content 'Signed out successfully.'
+    expect(page).to_not have_link 'Sign out'
   end
 end

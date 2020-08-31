@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module ApplicationHelper
   def current_year
     "Current year: #{Time.current.year}"
@@ -47,5 +45,9 @@ module ApplicationHelper
         )
       end
     end
+  end
+
+  def food_link(food)
+    "#{food.title} - #{food.price}$"
   end
 end

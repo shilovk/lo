@@ -7,7 +7,12 @@
       ul.navbar-nav.mr-auto.m-2.mt-lg-0
         - @weak_days.each_with_index do |day, i|
           li class="nav-item dropdown #{day}"
-            = link_to day, '#', id: 'navbarDropdown', class: 'nav-link dropdown-toggle', 'aria-expanded' => 'false', 'aria-haspopup' => 'true',  'data-toggle' => 'dropdown', 'role' => 'button'
+            = link_to day, '#', remote: true, id: 'navbarDropdown', class: 'nav-link dropdown-toggle', 'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown', 'role' => 'button'
+
             .dropdown-menu aria-labelledby='navbarDropdown'
               - Food.on_date(@weak_dates[i]).each do |food|
-                = link_to "#{food.title} - #{food.price}", '#', remote: true, class: 'dropdown-item'
+                - if @order.can_add?(food)
+                 = link_to food_link(food), root_path(food_id: food.id), class: "dropdown-item", title: 'Add to Order'
+                - else
+                  a.dropdown-item.disabled= food_link(food)
+  = render 'orders/order', order: @order

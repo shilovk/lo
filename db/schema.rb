@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_31_105013) do
+ActiveRecord::Schema.define(version: 2020_08_31_130651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,12 +19,30 @@ ActiveRecord::Schema.define(version: 2020_08_31_105013) do
     t.string "title", limit: 25, null: false
   end
 
+  create_table "food_orders", force: :cascade do |t|
+    t.bigint "food_id"
+    t.bigint "order_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["food_id"], name: "index_food_orders_on_food_id"
+    t.index ["order_id"], name: "index_food_orders_on_order_id"
+  end
+
   create_table "foods", force: :cascade do |t|
     t.string "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "price", default: 0
     t.date "date", null: false
+    t.integer "category", default: 0, null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "total_price", default: 0, null: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "tests", id: :serial, force: :cascade do |t|

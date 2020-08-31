@@ -1,0 +1,17 @@
+.row
+  .col
+    h4 Order
+    = order.user.email
+
+table.table.table-striped.table-bordered
+  thead
+    tr.table-info
+      th scope='col' Food
+      th scope='col' Price
+  tbody
+    - order.foods.each do |food|
+      tr
+        td= food.title
+        td= food.price
+.row
+  .col= link_to 'Create Order', '#', class: 'btn btn-primary'
