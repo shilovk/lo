@@ -11,7 +11,7 @@ FactoryBot.define do
     status { Order::STATUSES[1] }
   end
 
-  trait :executed do
+  trait :performed do
     status { Order::STATUSES[2] }
   end
 end

@@ -11,6 +11,8 @@ class Order < ApplicationRecord
 
   before_create :destroy_old_forming_orders
 
+  scope :on_date, ->(date) { where(date: date).where.not(status: STATUSES.first) }
+
   def self.find_forming_or_create
     find_or_create_by(status: STATUSES.first)
   end

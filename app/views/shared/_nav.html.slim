@@ -5,10 +5,10 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
   #navbarMenu.collapse.navbar-collapse
     ul.navbar-nav.mr-auto.mt-2.mt-lg-0
       - if user_signed_in?
+        li= link_to 'Orders', orders_path, class: 'nav-item nav-link d-inline list-orders-link'
         - if current_user.admin?
           li= link_to 'Users', users_path, class: 'nav-item nav-link d-inline list-users-link'
           li= link_to 'Foods', foods_path, class: 'nav-item nav-link d-inline'
-          li= link_to 'Orders', orders_path, class: 'nav-item nav-link d-inline'
         li.nav-item.d-inline
           = "<b>#{current_user.email}</b>".html_safe
           span.badge.badge-primary.ml-2= t('.admin') if current_user.admin?

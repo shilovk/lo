@@ -1,11 +1,13 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_dates, only: :index
   before_action :set_order, only: %i[show edit update destroy]
 
   authorize_resource
 
   def index
-    @orders = current_user.orders
+    @orders = Order.on_date(@date)
+    @orders = @orders.where(user_id: current_user.id) unless current_user.admin?
   end
 
   def new
@@ -45,6 +47,12 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def set_dates
+    @date = (params[:date] || Time.current).to_date
+    @prev_date = @date - 1.day
+    @next_date = @date + 1.day
+  end
 
   def set_order
     @order = Order.find(params[:id])

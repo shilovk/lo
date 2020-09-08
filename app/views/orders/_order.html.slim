@@ -1,8 +1,8 @@
-.row.mt-2
-  .col-2.h4  Order
-  .col= "status: #{order.status}"
+.row.mt-2 class="order-#{order.id}"
+  .col-2.h4 Order
   .col= "on date: #{order.date}"
   .col= "user: #{order.user.email}"
+  .col= "status: #{order.status}"
 
 table.table.table-striped.table-bordered
   thead
