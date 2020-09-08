@@ -1,28 +1,53 @@
 class FoodsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_time
-  before_action :find_food
-  before_action :set_order
+  before_action :set_food, only: %i[show edit update destroy]
 
-  def index; end
+  authorize_resource
+
+  def index
+    @date = params[:date] || Time.current.to_date
+    @foods = Food.on_date(@date)
+  end
+
+  def new
+    @food = Food.new
+  end
+
+  def create
+    @food = Food.new(food_params)
+
+    if @food.save
+      redirect_to foods_path
+    else
+      render :new
+    end
+  end
+
+  def show; end
+
+  def edit; end
+
+  def update
+    if @food.update(food_params)
+      redirect_to foods_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @food.destroy
+
+    redirect_to foods_path, notice: 'Food was successfuly deleted'
+  end
 
   private
 
-  def find_time
-    @weak_days = Food.weak_days
-    @weak_dates = Food.weak_dates
-  end
-
-  def set_order
-    @order = current_user.orders.first_or_create
-    @order.add_food(@food)
-  end
-
-  def find_food
-    @food = Food.find(params[:food_id]) if params[:food_id]
+  def set_food
+    @food = Food.find(params[:id])
   end
 
   def food_params
-    params.require(:food).permit(:title)
+    params.require(:food).permit(:title, :price)
   end
 end

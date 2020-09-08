@@ -1,0 +1,4 @@
+- if current_user.admin?
+  .admin_dashboard= render 'main/admin'
+- else
+  .user_dashboard= render 'main/user'

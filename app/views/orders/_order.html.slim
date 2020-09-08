@@ -1,7 +1,8 @@
-.row
-  .col
-    h4 Order
-    = order.user.email
+.row.mt-2
+  .col-2.h4  Order
+  .col= "status: #{order.status}"
+  .col= "on date: #{order.date}"
+  .col= "user: #{order.user.email}"
 
 table.table.table-striped.table-bordered
   thead
@@ -13,5 +14,3 @@ table.table.table-striped.table-bordered
       tr
         td= food.title
         td= food.price
-.row
-  .col= link_to 'Create Order', '#', class: 'btn btn-primary'

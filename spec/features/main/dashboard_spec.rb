@@ -1,14 +1,31 @@
 require 'rails_helper'
 
-feature 'User can see food', '
+feature 'User can see foods', '
   In order to get food on actual day
   As an authenticated
   I\'d like to be able to see it list
 ' do
-  given(:user) { create(:user) }
-  given(:weak_days) { Food.weak_days }
-  given(:weak_dates) { Food.weak_dates }
+  given!(:admin) { create(:user) }
+  given!(:user) { create(:user) }
+  given(:weak_days) { %w[Monday Tuesday Wednesday Thursday Friday Saturday Sunday] }
+  given(:weak_dates) { (Time.current.to_date.beginning_of_week..Time.current.to_date.end_of_week).to_a }
   given!(:foods) { create_list(:food, 2) }
+
+  scenario 'Authenticated admin user can not view days list' do
+    sign_in(admin)
+
+    weak_days.each do |day|
+      expect(page).to_not have_content day
+    end
+  end
+
+  scenario 'Unauthenticated user can not view days list' do
+    visit root_path
+
+    weak_days.each do |day|
+      expect(page).to_not have_content day
+    end
+  end
 
   describe 'Authenticated user' do
     background { sign_in(user) }
@@ -28,14 +45,6 @@ feature 'User can see food', '
           end
         end
       end
-    end
-  end
-
-  scenario 'Unauthenticated user can not view days list' do
-    visit root_path
-
-    weak_days.each do |day|
-      expect(page).to_not have_content day
     end
   end
 end

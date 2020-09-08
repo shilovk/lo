@@ -1,7 +1,23 @@
 class Order < ApplicationRecord
+  STATUSES = %w[forming processing performed].freeze
+
   belongs_to :user
   has_many :food_orders
   has_many :foods, through: :food_orders
+
+  attribute :date, :date, default: Time.current.to_date
+  attribute :status, :string, default: STATUSES.first
+  validates :status, presence: true, inclusion: { in: STATUSES }
+
+  before_create :destroy_old_forming_orders
+
+  def self.find_forming_or_create
+    find_or_create_by(status: STATUSES.first)
+  end
+
+  def destroy_old_forming_orders
+    Order.where(status: STATUSES.first).destroy_all
+  end
 
   def can_add?(food)
     return false if foods.include? food

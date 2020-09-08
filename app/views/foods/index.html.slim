@@ -1,18 +1,12 @@
-- if user_signed_in?
-  h3.text-center= t(Food.model_name.human)
-  nav.navbar.navbar-expand-lg.navbar-light.bg-light.p-0.m-0
-    button.navbar-toggler aria-controls='navbarFood' aria-expanded='false' aria-label=('Toggle navigation') data-target='#navbarFood' data-toggle='collapse' type='button'
-      span.navbar-toggler-icon
-    #navbarFood.collapse.navbar-collapse
-      ul.navbar-nav.mr-auto.m-2.mt-lg-0
-        - @weak_days.each_with_index do |day, i|
-          li class="nav-item dropdown #{day}"
-            = link_to day, '#', remote: true, id: 'navbarDropdown', class: 'nav-link dropdown-toggle', 'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown', 'role' => 'button'
+.row.mt-2
+  .col-2.h4 Foods
+  .col= "on date: #{@date}"
 
-            .dropdown-menu aria-labelledby='navbarDropdown'
-              - Food.on_date(@weak_dates[i]).each do |food|
-                - if @order.can_add?(food)
-                 = link_to food_link(food), root_path(food_id: food.id), class: "dropdown-item", title: 'Add to Order'
-                - else
-                  a.dropdown-item.disabled= food_link(food)
-  = render 'orders/order', order: @order
+table.table.table-striped.table-bordered
+  thead
+    tr.table-info
+      th scope='col' Food
+      th scope='col' Price
+      th scope='col' Category
+  tbody
+    = render @foods
