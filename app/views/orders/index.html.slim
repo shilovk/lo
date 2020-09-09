@@ -1,5 +1,8 @@
 .row.mt-2
   .col.h4 Orders
+  .col class='orders-total-cost'
+    b Total cost:
+    span.ml-2= @orders.total_cost
   .col= link_to '← prev date', orders_path(date: @prev_date), class: 'prev-orders-link'
   .col= "on date: #{@date}"
   .col= link_to 'next day →', orders_path(date: @next_date), class: 'next-orders-link'

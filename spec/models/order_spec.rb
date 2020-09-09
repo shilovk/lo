@@ -20,6 +20,15 @@ RSpec.describe Order, type: :model do
     expect(Order.where(status: 'forming').count).to eq(1)
   end
 
+  describe '.total_cost' do
+    let!(:orders) { create_list(:order, 3, :performed, total_price: 5) }
+    let!(:total_cost) { orders.sum(&:total_price) }
+
+    it 'calculates total cost for today' do
+      expect(Order.total_cost).to eq(total_cost)
+    end
+  end
+
   describe '.find_forming_or_create' do
     let(:other_order) { create(:order, status: 'processing') }
 

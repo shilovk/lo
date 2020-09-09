@@ -45,6 +45,22 @@ feature 'Authenticated admin user can see users\' orders', '
         expect(page).to_not have_css ".order-#{order.id}"
       end
     end
+
+    scenario 'with total price' do
+      [order, other_order].each do |order|
+        within ".order-total-price-#{order.id}" do
+          expect(page).to have_content order.total_price
+        end
+      end
+    end
+
+    scenario 'with total cost for today' do
+      total_cost = order.total_price + other_order.total_price
+
+      within '.orders-total-cost' do
+        expect(page).to have_content total_cost
+      end
+    end
   end
 
   scenario 'Authenticated user can not see orders' do

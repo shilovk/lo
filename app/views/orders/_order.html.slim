@@ -1,8 +1,9 @@
 .row.mt-2 class="order-#{order.id}"
-  .col-2.h4 Order
-  .col= "on date: #{order.date}"
-  .col= "user: #{order.user.email}"
-  .col= "status: #{order.status}"
+  .col.h4 Order
+  .col class="order-total-price-#{order.id}"= "total price: #{order.total_price}"
+  .col.small= "on date: #{order.date}"
+  .col-3.small= "user: #{order.user.email}"
+  .col.small= "status: #{order.status}"
 
 table.table.table-striped.table-bordered
   thead
