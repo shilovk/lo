@@ -20,9 +20,16 @@
             span.input-group-text.form-control $
         .input-group.mb-2
           .input-group-prepend
-            span.input-group-text.form-control Category
+            span.input-group-text.form-control= f.label :category
           - Food::CATEGORIES.each do |category|
             .input-group-prepend
               span.input-group-text= f.radio_button :category, category
             .form-control= f.label category
+        .input-group.mb-2
+          .input-group-prepend
+            span.input-group-text.form-control= f.label :image
+          - if @food.image.attached?
+            .form_inline
+              = link_to image_tag(@food.image.variant(resize_to_limit: [100, 100])), rails_blob_path(@food.image, disposition: 'attachment'), class: 'form-control'
+          = f.file_field :image, multiple: false, direct_upload: true, class: 'form-control'
         .mt-3= f.submit 'Save', class: 'btn btn-primary save-button-link'

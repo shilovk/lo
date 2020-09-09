@@ -4,6 +4,8 @@ class Food < ApplicationRecord
   has_many :food_orders
   has_many :orders, through: :food_orders
 
+  has_one_attached :image
+
   validates :title, :category, :price, presence: true
 
   scope :on_date, ->(date) { where('date = ?', date) }

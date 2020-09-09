@@ -21,8 +21,22 @@ pp last_food32 = Food.create!(title: 'Coffee last', price: 10, date: last_date, 
 
 pp status = Order::STATUSES.last
 
-pp user.orders.create(date: date, status: status, foods: [food11, food21, food31])
-pp other_user.orders.create(date: date, status: status, foods: [food11, food22, food32])
+pp order1 = user.orders.create!(date: date, status: status)
+pp order1.add_food(food11)
+pp order1.add_food(food21)
+pp order1.add_food(food31)
 
-pp user.orders.create(date: last_date, status: status, foods: [last_food12, last_food22, last_food31])
-pp other_user.orders.create(date: last_date, status: status, foods: [last_food11, last_food22, last_food32])
+pp order2 = other_user.orders.create!(date: date, status: status)
+pp order2.add_food(food11)
+pp order2.add_food(food22)
+pp order2.add_food(food32)
+
+pp order3 = user.orders.create!(date: last_date, status: status)
+pp order3.add_food(last_food12)
+pp order3.add_food(last_food22)
+pp order3.add_food(last_food31)
+
+pp order3 = other_user.orders.create!(date: last_date, status: status)
+pp order3.add_food(last_food11)
+pp order3.add_food(last_food21)
+pp order3.add_food(last_food32)

@@ -5,8 +5,10 @@
 table.table.table-striped.table-bordered
   thead
     tr.table-info
-      th scope='col' Food
-      th scope='col' Price
-      th scope='col' Category
+      th scope='col'= Food.human_attribute_name(:title)
+      th scope='col'= Food.human_attribute_name(:image)
+      th scope='col'= Food.human_attribute_name(:price)
+      th scope='col'= Food.human_attribute_name(:category)
+      th scope='col' colspan='2' Actions
   tbody
     = render @foods

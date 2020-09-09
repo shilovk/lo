@@ -1,4 +1,9 @@
 tr
-  td= food.title
+  th scope='row' class='align-middle'= food.title
+  td= link_to image_tag(food.image.variant(resize_to_limit: [100, 100])), url_for(food.image), target: '_blank', title: 'Preview' if food.image.attached?
   td= food.price
   td= food.category
+  td= link_to 'Edit', edit_food_path(food),
+              class: 'btn btn-outline-primary btn-sm'
+  td= link_to 'Delete', food_path(food), method: :delete,
+              data: { confirm: 'Are you sure?'}, class: 'btn btn-outline-danger btn-sm'

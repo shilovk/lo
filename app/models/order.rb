@@ -17,8 +17,16 @@ class Order < ApplicationRecord
     find_or_create_by(status: STATUSES.first)
   end
 
+  def self.total_cost(date: Time.current.to_date)
+    on_date(date).sum(&:total_price)
+  end
+
   def destroy_old_forming_orders
     Order.where(status: STATUSES.first).destroy_all
+  end
+
+  def calculate_total_price
+    update_attribute :total_price, foods.sum(:price)
   end
 
   def can_add?(food)
@@ -33,5 +41,6 @@ class Order < ApplicationRecord
     return unless can_add?(food)
 
     foods.push food
+    calculate_total_price
   end
 end

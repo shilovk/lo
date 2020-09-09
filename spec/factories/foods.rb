@@ -8,6 +8,7 @@ FactoryBot.define do
     category { rand(1..3) }
     price { rand(5..30) }
     date { Time.current.to_date }
+    image { Rack::Test::UploadedFile.new(Rails.root.join('app', 'javascript', 'images', 'rails.jpg')) }
   end
 
   trait :first do

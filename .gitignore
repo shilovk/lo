@@ -36,3 +36,6 @@ yarn-debug.log*
 .env
 log/
 tmp/
+
+/storage/*
+!/storage/.keep
