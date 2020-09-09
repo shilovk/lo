@@ -5,13 +5,11 @@ class User < ApplicationRecord
          :rememberable,
          :validatable
 
+  has_many :orders
+
   validates :email, presence: true
 
   before_create :set_admin, unless: -> { User.exists? }
-
-  def admin?
-    admin
-  end
 
   private
 

@@ -1,0 +1,2 @@
+.order= render 'orders/order', order: @order
+= link_to 'Process order', order_path(@order, 'order[status]' => Order::STATUSES[1]), method: :put, class: 'btn btn-primary'

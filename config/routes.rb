@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  root to: 'main#dashboard'
+
   devise_for :users
 
-  root to: 'foods#index'
-
+  resources :users, only: :index
   resources :foods
+  resources :orders
 end

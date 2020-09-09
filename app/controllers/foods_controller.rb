@@ -1,15 +1,53 @@
-# frozen_string_literal: true
-
 class FoodsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!
+  before_action :set_food, only: %i[show edit update destroy]
+
+  authorize_resource
 
   def index
-    @weak_days = Food.weak_days
-    @weak_dates = Food.weak_dates
-    @foods = Food.all
+    @date = params[:date] || Time.current.to_date
+    @foods = Food.on_date(@date)
+  end
+
+  def new
+    @food = Food.new(date: Time.current.to_date)
+  end
+
+  def create
+    @food = Food.new(food_params)
+
+    if @food.save
+      redirect_to root_path, notice: 'Food was successfuly created.'
+    else
+      render :new
+    end
+  end
+
+  def show; end
+
+  def edit; end
+
+  def update
+    if @food.update(food_params)
+      redirect_to root_path, notice: 'Food was successfuly updated.'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @food.destroy
+
+    redirect_to foods_path, notice: 'Food was successfuly deleted.'
+  end
+
+  private
+
+  def set_food
+    @food = Food.find(params[:id])
   end
 
   def food_params
-    params.require(:food).permit(:title)
+    params.require(:food).permit(:title, :date, :price, :category)
   end
 end

@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Food, type: :model do
   it { should validate_presence_of :title }
+  it { should validate_presence_of :category }
+  it { should validate_presence_of :price }
+  it { should have_many(:orders).through(:food_orders) }
 
   describe 'scopes' do
     let(:foods) { create_list(:food, 2) }

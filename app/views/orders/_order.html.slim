@@ -1,0 +1,16 @@
+.row.mt-2 class="order-#{order.id}"
+  .col-2.h4 Order
+  .col= "on date: #{order.date}"
+  .col= "user: #{order.user.email}"
+  .col= "status: #{order.status}"
+
+table.table.table-striped.table-bordered
+  thead
+    tr.table-info
+      th scope='col' Food
+      th scope='col' Price
+  tbody
+    - order.foods.each do |food|
+      tr
+        td= food.title
+        td= food.price
