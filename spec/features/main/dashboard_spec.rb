@@ -11,11 +11,11 @@ feature 'User can see foods', '
   given(:weak_dates) { (Time.current.to_date.beginning_of_week..Time.current.to_date.end_of_week).to_a }
   given!(:foods) { create_list(:food, 2) }
 
-  scenario 'Authenticated admin user can not view days list' do
+  scenario 'Authenticated admin user can see view days list' do
     sign_in(admin)
 
     weak_days.each do |day|
-      expect(page).to_not have_content day
+      expect(page).to have_content day
     end
   end
 

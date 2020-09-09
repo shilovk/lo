@@ -10,14 +10,14 @@ class FoodsController < ApplicationController
   end
 
   def new
-    @food = Food.new
+    @food = Food.new(date: Time.current.to_date)
   end
 
   def create
     @food = Food.new(food_params)
 
     if @food.save
-      redirect_to foods_path
+      redirect_to root_path, notice: 'Food was successfuly created.'
     else
       render :new
     end
@@ -29,7 +29,7 @@ class FoodsController < ApplicationController
 
   def update
     if @food.update(food_params)
-      redirect_to foods_path
+      redirect_to root_path, notice: 'Food was successfuly updated.'
     else
       render :edit
     end
@@ -38,7 +38,7 @@ class FoodsController < ApplicationController
   def destroy
     @food.destroy
 
-    redirect_to foods_path, notice: 'Food was successfuly deleted'
+    redirect_to foods_path, notice: 'Food was successfuly deleted.'
   end
 
   private
@@ -48,6 +48,6 @@ class FoodsController < ApplicationController
   end
 
   def food_params
-    params.require(:food).permit(:title, :price)
+    params.require(:food).permit(:title, :date, :price, :category)
   end
 end

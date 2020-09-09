@@ -1,8 +1,10 @@
 class Food < ApplicationRecord
-  validates :title, :category, :price, presence: true
+  CATEGORIES = [1, 2, 3].freeze
 
   has_many :food_orders
   has_many :orders, through: :food_orders
+
+  validates :title, :category, :price, presence: true
 
   scope :on_date, ->(date) { where('date = ?', date) }
 

@@ -1,0 +1,28 @@
+= form_with model: @food, local: true do |f|
+  .food-errors= render 'shared/errors', resource: @food
+  .card.border-primary
+    .card-body
+      .form-group
+        .input-group.mb-2
+          .input-group-prepend
+            span.input-group-text.form-control= f.label :date
+          .form-control= @food.date
+          = f.hidden_field :date, class: 'form-control'
+        .input-group.mb-2
+          .input-group-prepend
+            span.input-group-text.form-control= f.label :title
+          = f.text_field :title, autofocus: true, autocomplete: 'title', class: 'form-control'
+        .input-group.mb-2
+          .input-group-prepend
+            span.input-group-text.form-control= f.label :price
+          = f.number_field :price, autofocus: true, autocomplete: 'price', class: 'form-control'
+          .input-group-append
+            span.input-group-text.form-control $
+        .input-group.mb-2
+          .input-group-prepend
+            span.input-group-text.form-control Category
+          - Food::CATEGORIES.each do |category|
+            .input-group-prepend
+              span.input-group-text= f.radio_button :category, category
+            .form-control= f.label category
+        .mt-3= f.submit 'Save', class: 'btn btn-primary save-button-link'

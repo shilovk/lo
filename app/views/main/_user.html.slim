@@ -1,17 +1,2 @@
-h3.text-center= t(Food.model_name.human)
-nav.navbar.navbar-expand-lg.navbar-light.bg-light.p-0.m-0
-  button.navbar-toggler aria-controls='navbarFood' aria-expanded='false' aria-label=('Toggle navigation') data-target='#navbarFood' data-toggle='collapse' type='button'
-    span.navbar-toggler-icon
-  #navbarFood.collapse.navbar-collapse
-    ul.navbar-nav.mr-auto.m-2.mt-lg-0
-      - @weak_days.each_with_index do |day, i|
-        li class="nav-item dropdown #{day}"
-          = link_to day, '#', remote: true, id: 'navbarDropdown', class: 'nav-link dropdown-toggle', 'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown', 'role' => 'button'
-          .dropdown-menu aria-labelledby='navbarDropdown'
-            - Food.on_date(@weak_dates[i]).each do |food|
-              - if @order.can_add?(food)
-               = link_to food_link(food), order_path(@order, food_id: food.id), method: :put, class: 'dropdown-item', title: 'Add to Order'
-              - else
-                a.dropdown-item.disabled= food_link(food)
 .order= render 'orders/order', order: @order
 = link_to 'Process order', order_path(@order, 'order[status]' => Order::STATUSES[1]), method: :put, class: 'btn btn-primary'
