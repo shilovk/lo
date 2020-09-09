@@ -9,7 +9,11 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.p-0.m-0
           = link_to day, '#', remote: true, id: 'navbarDropdown', class: 'nav-link dropdown-toggle', 'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown', 'role' => 'button'
           .dropdown-menu aria-labelledby='navbarDropdown'
             - Food.on_date(@weak_dates[i]).each do |food|
-              - if current_user.admin? || @order.can_add?(food)
-               = link_to food_link(food), order_path(@order, food_id: food.id), method: :put, class: 'dropdown-item', title: 'Add to Order'
+              - if !current_user.admin? && @order.can_add?(food)
+                = link_to order_path(@order, food_id: food.id), method: :put, class: 'dropdown-item', title: 'Add to Order' do
+                  span.mr-2= food_link(food)
+                  = image_tag(food.image.variant(resize_to_limit: [100, 100])) if food.image.attached?
               - else
-                a.dropdown-item.disabled= food_link(food)
+                a.dropdown-item.disabled
+                  span.mr-2= food_link(food)
+                  = image_tag(food.image.variant(resize_to_limit: [100, 100])) if food.image.attached?

@@ -36,6 +36,7 @@ feature 'Admin can create food', '
 
       fill_in 'Title', with: 'Test title'
       fill_in 'Price', with: 10
+      attach_file 'Image', Rails.root.join('app', 'javascript', 'images', 'rails.jpg')
 
       click_on class: 'save-button-link'
 

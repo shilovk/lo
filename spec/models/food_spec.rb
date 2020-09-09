@@ -6,6 +6,10 @@ RSpec.describe Food, type: :model do
   it { should validate_presence_of :price }
   it { should have_many(:orders).through(:food_orders) }
 
+  it 'has one attached file' do
+    expect(Food.new.image).to be_an_instance_of(ActiveStorage::Attached::One)
+  end
+
   describe 'scopes' do
     let(:foods) { create_list(:food, 2) }
 

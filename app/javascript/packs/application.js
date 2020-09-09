@@ -21,3 +21,5 @@ import "../src/application";
 
 import "./bootstrap_custom";
 require("./utilities/confirm");
+
+require("./direct_uploads")
