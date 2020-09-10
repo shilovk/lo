@@ -36,11 +36,13 @@ gem 'devise'
 gem 'devise-i18n', '~> 1.9.0'
 gem 'doorkeeper'
 gem 'foreman'
+gem 'mini_racer'
 gem 'oj'
 gem 'image_processing'
 gem 'rails-i18n'
 gem 'rubocop', '~> 0.89.1', require: false
 gem 'slim-rails'
+gem 'unicorn'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -50,6 +52,11 @@ group :development, :test do
 end
 
 group :development do
+  gem 'capistrano', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rvm', require: false
+  gem 'capistrano3-unicorn', require: false
   gem 'letter_opener', '~> 1.7.0'
   gem 'listen', '~> 3.2'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
