@@ -30,6 +30,7 @@ class Order < ApplicationRecord
   end
 
   def can_add?(food)
+    return false if food.date != Time.current.to_date
     return false if foods.include? food
     return false if foods.map(&:category).include? food.category
 

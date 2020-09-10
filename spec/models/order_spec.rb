@@ -50,6 +50,8 @@ RSpec.describe Order, type: :model do
   end
 
   describe '#can_add?' do
+    let(:prev_date) { Time.current.to_date - 1.day }
+    let(:last_first_food) { create(:food, :first, date: prev_date) }
     let(:first_food) { create(:food, :first) }
     let(:other_first_food) { create(:food, :first) }
     let(:main_food) { create(:food, :main) }
@@ -63,6 +65,7 @@ RSpec.describe Order, type: :model do
 
     it 'Can not add food to order' do
       expect(order.can_add?(other_first_food)).to be false
+      expect(order.can_add?(last_first_food)).to be false
     end
   end
 
