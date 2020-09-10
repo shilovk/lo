@@ -40,7 +40,6 @@ gem 'mini_racer'
 gem 'oj'
 gem 'image_processing'
 gem 'rails-i18n'
-gem 'rubocop', '~> 0.89.1', require: false
 gem 'slim-rails'
 gem 'unicorn'
 
@@ -61,6 +60,7 @@ group :development do
   gem 'listen', '~> 3.2'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'rubocop', '~> 0.89.1', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
