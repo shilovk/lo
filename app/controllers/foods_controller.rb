@@ -44,7 +44,7 @@ class FoodsController < ApplicationController
   private
 
   def set_food
-    @food = Food.find(params[:id])
+    @food = Food.with_attached_image.find(params[:id])
   end
 
   def food_params

@@ -1,6 +1,8 @@
 FactoryBot.define do
   factory :order do
     user
+    date { Time.current.to_date }
+    total_price { rand(5..30) }
   end
 
   trait :forming do

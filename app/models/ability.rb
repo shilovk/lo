@@ -24,8 +24,7 @@ class Ability
 
     can :read, Food
 
-    can :read, Order, user_id: user.id
     can :create, Order
-    can :update, Order, user_id: user.id
+    can %i[read update], Order, user_id: user.id
   end
 end
