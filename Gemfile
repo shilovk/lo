@@ -28,12 +28,15 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+gem 'active_model_serializers', '~> 0.10.10'
 gem 'aws-sdk-s3', require: false
 gem 'bootstrap', '~>4.5.2'
 gem 'cancancan'
 gem 'devise'
 gem 'devise-i18n', '~> 1.9.0'
+gem 'doorkeeper'
 gem 'foreman'
+gem 'oj'
 gem 'image_processing'
 gem 'rails-i18n'
 gem 'rubocop', '~> 0.89.1', require: false
